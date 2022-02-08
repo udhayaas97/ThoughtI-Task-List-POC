@@ -1,5 +1,5 @@
 <div class="container m-2 mx-auto">
-  <form>
+  <form [formGroup]="taskForm" (submit)="onAddTask()">
     <fieldset class="border rounded-3 p-3">
       <legend class="float-none w-auto px-3">User Tasks</legend>
       <div class="row">
@@ -8,31 +8,76 @@
             id="task"
             type="text"
             class="form-control"
+            [class.is-invalid]="isControlError('description')"
             placeholder="Task Description"
             aria-label="Task Description"
+            formControlName="description"
           />
           <div class="d-flex justify-content-between">
             <label for="task">Task</label>
-            <label>0/200</label>
+            <label>{{ formControls("description")?.value?.length }}/200</label>
           </div>
+          <small
+            class="invisible text-danger"
+            [class.visible]="
+              isControlError('description') && errors('description', 'required')
+            "
+            >Task description is required</small
+          >
+          <small
+            class="invisible text-danger"
+            [class.visible]="
+              isControlError('description') &&
+              errors('description', 'maxlength')
+            "
+          >
+            Maximum allowed length is
+            {{ errors("description", "maxlength")?.requiredLength }}
+          </small>
         </div>
         <div class="col">
           <input
             id="date"
             type="date"
             class="form-control"
+            [class.is-invalid]="isControlError('expiryDate')"
             aria-label="Expiry Date"
+            formControlName="expiryDate"
           />
           <label for="date">Expiry Date</label>
+          <div>
+            <small
+              class="invisible text-danger"
+              [class.visible]="
+                isControlError('expiryDate') && errors('expiryDate', 'required')
+              "
+              >Expiry date is required</small
+            >
+          </div>
         </div>
         <div class="col">
-          <select class="form-select" id="user" aria-label="Select user">
-            <option selected>Select</option>
-            <option *ngFor="let user of users" value="user">
+          <select
+            class="form-select"
+            [class.is-invalid]="isControlError('user')"
+            id="user"
+            aria-label="Select user"
+            formControlName="user"
+          >
+            <option value="">Select</option>
+            <option *ngFor="let user of users" [value]="user">
               {{ user }}
             </option>
           </select>
           <label for="user">Users</label>
+          <div>
+            <small
+              class="invisible text-danger"
+              [class.visible]="
+                isControlError('user') && errors('user', 'required')
+              "
+              >User is required</small
+            >
+          </div>
         </div>
         <div class="col-1">
           <div class="d-flex justify-content-center">
@@ -46,7 +91,13 @@
           <label>Important</label>
         </div>
         <div class="col-1">
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="taskForm.invalid"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </fieldset>
