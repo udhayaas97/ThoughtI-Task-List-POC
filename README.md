@@ -1,27 +1,76 @@
-# TaskList
+# Task List Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+This document will explain that how to setup the environment to run this project.
+## Prerequisites
 
-## Development server
+To run this project, you need to install the following
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Nodejs
+- Angular
 
-## Code scaffolding
+### Install the Node.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To check if node is installed using the below command in a terminal/console window.
 
-## Build
+```
+node -v
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+If it not showing the node version, Go to [nodejs.org](https://nodejs.org/) to get `Node.js`.
 
-## Running unit tests
+### Install the Angular CLI
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Check if angular is installed using the below command.
 
-## Running end-to-end tests
+```
+ng --version
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+If it not showing Angular CLI version, Install the Angular CLI, to do that open a terminal window and run the following command.
 
-## Further help
+```
+npm install -g @angular/cli
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Initial setup
+
+Get the source code from the Git by the following two ways.
+
+- Direct download
+- Cloning repository
+
+#### Downloading source code
+
+1. Visit [this Github URL](https://github.com/udhayaas97/ThoughtI-Task-List-POC).
+2. There, you can find the **code** button. Click the button.
+3. Click the **Download ZIP** button.
+4. Then, Extract the ZIP file.
+
+#### Cloning from the Git repository
+
+To clone the source code from the Git repository, You need to install the git.
+
+To see if you already have Git installed, open up your terminal/console and run the following command.
+
+```
+git --verison
+```
+
+If it not showing the Git version, Install the Git by going to [this link](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+Then run the below code in terminal to clone the repository.
+
+```
+git clone https://github.com/udhayaas97/ThoughtI-Task-List-POC.git
+
+```
+
+### Running the application
+
+Open the terminal in the project directory and run the below code.
+
+```
+ng s -o
+```
+
+It will build and run the application, Also it will open the default browser with the application window.
