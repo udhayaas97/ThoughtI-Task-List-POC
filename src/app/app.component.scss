@@ -1,3 +1,9 @@
-small.visible {
+.visible {
   visibility: visible !important;
+}
+.table {
+  min-width: 540px;
+}
+.icon-fas-minus-circle {
+  color: gray;
 }
