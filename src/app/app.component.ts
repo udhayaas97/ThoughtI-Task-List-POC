@@ -3,16 +3,17 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { faFlag as farFlag } from '@fortawesome/free-regular-svg-icons';
 import {
   faFlag as fasFlag,
-  faMinusCircle as fasMinusCircle,
+  faMinusCircle as fasMinusCircle
 } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { Task, TaskData } from './task.model';
 import { TaskService } from './task.service';
-import { TaskData, Task } from './task.model';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private taskService: TaskService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
       (taskData: TaskData) => {
         this.users = taskData.Users;
         this.tasks = taskData.Tasks;
+        this.notifyImportantTasks();
       }
     );
     this.subscriptions.add(observer);
@@ -73,6 +76,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onImportantSelect(): void {
     this.isImportant = !this.isImportant;
+  }
+
+  notifyImportantTasks(): void {
+    this.tasks.forEach((task: Task) => {
+      if (task.Important) {
+        this.toasterService.info(task.Task);
+      }
+    });
   }
 
   onAddTask(): void {}
