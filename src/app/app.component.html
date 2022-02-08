@@ -1,0 +1,54 @@
+<div class="container m-2 mx-auto">
+  <form>
+    <fieldset class="border rounded-3 p-3">
+      <legend class="float-none w-auto px-3">User Tasks</legend>
+      <div class="row">
+        <div class="col">
+          <input
+            id="task"
+            type="text"
+            class="form-control"
+            placeholder="Task Description"
+            aria-label="Task Description"
+          />
+          <div class="d-flex justify-content-between">
+            <label for="task">Task</label>
+            <label>0/200</label>
+          </div>
+        </div>
+        <div class="col">
+          <input
+            id="date"
+            type="date"
+            class="form-control"
+            aria-label="Expiry Date"
+          />
+          <label for="date">Expiry Date</label>
+        </div>
+        <div class="col">
+          <select class="form-select" id="user" aria-label="Select user">
+            <option selected>Select</option>
+            <option *ngFor="let user of users" value="user">
+              {{ user }}
+            </option>
+          </select>
+          <label for="user">Users</label>
+        </div>
+        <div class="col-1">
+          <div class="d-flex justify-content-center">
+            <fa-icon
+              [icon]="isImportant ? fasFlag : farFlag"
+              [size]="'2x'"
+              class="cursor-pointer"
+              (click)="onImportantSelect()"
+            ></fa-icon>
+          </div>
+          <label>Important</label>
+        </div>
+        <div class="col-1">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
